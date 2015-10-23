@@ -99,3 +99,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.jpg
+*.png
+numpy-1.9.3+mkl-cp34-none-win_amd64.whl
+*.whl
