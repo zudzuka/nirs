@@ -26,7 +26,9 @@ class MainWindow(QtGui.QMainWindow):
         self.toolbar = NavigationToolbar(self.canvas, self)
         self.button = QtGui.QPushButton('Plot')
         self.slider1 = QtGui.QSlider(QtCore.Qt.Horizontal, self)
+        self.slider1.setRange(1, 300)
         self.slider2 = QtGui.QSlider(QtCore.Qt.Horizontal, self)
+        self.slider2.setRange(1, 100)
         self.lcd1 = QtGui.QLCDNumber(self)
         self.lcd2 = QtGui.QLCDNumber(self)
         #Расположение в сетке
@@ -46,11 +48,13 @@ class MainWindow(QtGui.QMainWindow):
         self.connect(self.slider1,  QtCore.SIGNAL('valueChanged(int)'),     self.lcd1, QtCore.SLOT('display(int)') )
         self.connect(self.slider2,  QtCore.SIGNAL('valueChanged(int)'),     self.lcd2, QtCore.SLOT('display(int)') )
         self.button.clicked.connect(self.plot)
+        self.slider1.sliderReleased.connect(self.plot)
+        self.slider2.sliderReleased.connect(self.plot)
 
     def plot(self):
         #a=main.update()
         #img=cv.imread('5.jpg', 1) 
-        img=getdata.update()
+        img=getdata.update(self.slider1.value(), self.slider2.value())
         #print(type(img))
         # ax = self.figure.add_subplot(111)
         # ax.imshow(img, cmap = 'gray', interpolation = 'bicubic')

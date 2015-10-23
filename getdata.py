@@ -25,13 +25,13 @@ class Coins:
             self.summ=self.summ+1
         return value
 
-def update():
-    img = cv.imread('5.jpg', 1) 
+def update(p1, p2):
+    img = cv.imread('6.jpg', 1) 
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     gray = cv.GaussianBlur(gray, (7, 7), 0.5)
     #edges = cv.Canny(gray, 0, 50) #есть в HoughCircles
     circles = cv.HoughCircles(gray,cv.HOUGH_GRADIENT,1,120,
-                                param1=200,param2=35,minRadius=60,maxRadius=100)
+                                param1=p1,param2=p2,minRadius=60,maxRadius=100)
     #circles = np.uint16(np.around(circles))
     money = Coins()
     for i in circles[0,:]:
