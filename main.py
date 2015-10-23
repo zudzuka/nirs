@@ -18,7 +18,7 @@ class Coins:
 img = cv.imread('5.jpg', 1)
 gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 gray = cv.GaussianBlur(gray, (7, 7), 0.5) 
-edges = cv.Canny(gray, 0, 50)
+#edges = cv.Canny(gray, 0, 50)
 circles = cv.HoughCircles(gray,cv.HOUGH_GRADIENT,1,120,
                             param1=200,param2=35,minRadius=60,maxRadius=100)
 #circles = np.uint16(np.around(circles))
@@ -34,8 +34,8 @@ for i in circles[0,:]:
     font = cv.FONT_HERSHEY_SIMPLEX
     cv.putText(img, str(v), (i[0],i[1]), font, 2, (255,0,0), 2, cv.LINE_AA)
 
-
+cv.putText(img, str(money.summ), (50,100), font, 2, (255,255,0), 2, 			cv.LINE_AA)
 plt.imshow(img, cmap = 'gray', interpolation = 'bicubic')
+
 plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-plt.text (0, 0, str(money.summ))
 plt.show()
