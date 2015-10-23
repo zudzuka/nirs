@@ -35,20 +35,11 @@ class Window(QtGui.QDialog):
         self.setLayout(layout)
 
     def plot(self):
-        ''' plot some random stuff '''
-        # random data
-        data = [random.random() for i in range(10)]
-
-        # create an axis
-        ax = self.figure.add_subplot(111)
-
-        # discards the old graph
-        ax.hold(False)
-
-        # plot data
-        ax.plot(data, '*-')
-
-        # refresh canvas
+        self.figure.clear()
+        self.axes = self.figure.add_subplot(111)
+        #self.axes.plot(self.x, self.y, 'ro')
+        self.axes.imshow(self.data, interpolation='nearest')
+        #self.axes.plot([1,2,3])
         self.canvas.draw()
 
 if __name__ == '__main__':
